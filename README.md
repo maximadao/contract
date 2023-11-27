@@ -1,1 +1,1 @@
-# contract
+# Maxima Contract
