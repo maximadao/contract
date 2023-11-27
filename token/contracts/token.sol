@@ -12,19 +12,19 @@ contract Maxima is ERC20, Whitelist {
     uint256 private _maxSupply;
 
     // Swap
-    address public uniswapRouter;
-    address public uniswapV2Pair;
+    address public pancakeSwapRouter;
+    address public pancakeSwapV2Pair;
 
     // slippage
     address public slippagePool;
     uint256 private sellSlippage = 3;
     uint256 private buySlippage = 3;
 
-    constructor(string memory name, string memory symbol, uint256 maxSupply)
-        ERC20(name, symbol, maxSupply)
+    constructor(string memory name_, string memory symbol_, uint256 maxSupply_)
+        ERC20(name_, symbol_)
     {
         // Init max supply
-        _maxSupply = maxSupply;
+        _maxSupply = maxSupply_;
 
         // Init slippage pool
         setSlippagePool(_msgSender());
