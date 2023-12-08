@@ -17,8 +17,8 @@ contract Maxima is ERC20, Whitelist {
 
     // slippage
     address public slippagePool;
-    uint256 private sellSlippage = 3;
-    uint256 private buySlippage = 3;
+    uint256 public sellSlippage = 3;
+    uint256 public buySlippage = 3;
 
     constructor(string memory name_, string memory symbol_, uint256 maxSupply_)
         ERC20(name_, symbol_)
@@ -43,8 +43,32 @@ contract Maxima is ERC20, Whitelist {
         pancakeSwapV2Pair = lp;
     }
 
+    // set slippage pool
     function setSlippagePool(address pool) public onlyOwner {
         slippagePool = pool;
+    }
+
+    // set sell slippage
+    function setSellSlippage(uint256 newSlippage) public onlyOwner {
+        sellSlippage = newSlippage;
+    }
+
+    // set buy slippage
+    function setBuySlippage(uint256 newSlippage) public onlyOwner {
+        buySlippage = newSlippage;
+    }
+
+    // sell slippage view
+    function getSellSlippage() public view returns (uint256) {
+        return sellSlippage;
+    }
+    // buy slippage view
+    function getBuySlippage() public view returns (uint256) {
+        return buySlippage;
+    }
+    // slippage pool view
+    function getSlippagePool() public view returns (address) {
+        return slippagePool;
     }
 
     function mint(address to, uint256 amount) external onlyOwner returns (bool) {
